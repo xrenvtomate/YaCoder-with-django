@@ -7,8 +7,8 @@ from django.urls import reverse
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         'имя пользователя',
-        max_length=150,
-        help_text='Не более 150 символов',
+        max_length=127,
+        help_text='Не более 127 символов',
     )
     email = models.EmailField(
         'электронная почта',
@@ -19,26 +19,34 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     first_name = models.CharField(
         'имя',
-        max_length=254,
+        max_length=127,
         blank=True,
         null=True,
-        help_text='Не более 254 символов',
+        help_text='Не более 127 символов',
     )
     last_name = models.CharField(
         'фамилия',
-        max_length=254,
+        max_length=127,
         blank=True,
         null=True,
-        help_text='Не более 254 символов',
+        help_text='Не более 127 символов',
     )
     about_me = models.TextField(
-        'описание',
+        'обо мне',
         default='Sample Text',
-        help_text='Обо мне',
+        blank=True,
+    )
+    profile_pic = models.ImageField(
+        'изображение профиля',
+        upload_to='images/%Y/%m',
+        blank=True,
+    )
+    friends = models.ManyToManyField(
+        'self',
         blank=True,
     )
 
-    is_staff = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
 
