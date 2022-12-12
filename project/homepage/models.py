@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
 
 from .managers import ItemManager
+from users.models import User
 
 
 class Tag(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
@@ -30,6 +31,48 @@ class Category(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
         verbose_name = 'категория'
         verbose_name_plural = 'категории'
         default_related_name = 'categories'
+
+
+class Comment(models.Model):
+    text = models.TextField(
+        'комментарий',
+        max_length=500,
+        blank=True,
+    )
+    user = models.ForeignKey(
+        User,
+        verbose_name='пользователь',
+        help_text='автор комментария',
+        on_delete=models.CASCADE,
+    )
+    post = models.ForeignKey(
+        'Post',
+        verbose_name='пост',
+        help_text='пост, под которым находится комментарий',
+        on_delete=models.CASCADE,
+    )
+    prev_comment = models.ForeignKey(
+        'self',
+        verbose_name='комментарий сверху',
+        help_text='комментарий, на который отвечает этот комментарий',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
+    created_on = models.DateTimeField(
+        'дата создания',
+        auto_now_add=True,
+    )
+    edited_on = models.DateTimeField(
+        'дата изменения',
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = 'комментарий'
+        verbose_name_plural = 'комментарии'
+        default_related_name = 'comments'
 
 
 class Post(PublishableBaseModel, NamedBaseModel):
