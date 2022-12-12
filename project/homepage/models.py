@@ -40,7 +40,7 @@ class Post(PublishableBaseModel, NamedBaseModel):
     text = models.TextField(
         'описание',
         default='Sample Text',
-        help_text='Описание товара',
+        help_text='Описание поста',
         validators=(
         ),
         blank=True
@@ -48,21 +48,21 @@ class Post(PublishableBaseModel, NamedBaseModel):
     category = models.ForeignKey(
         Category,
         verbose_name='категория',
-        help_text='Категория товара',
+        help_text='Категория поста',
         on_delete=models.CASCADE,
         null=True,
     )
     tags = models.ManyToManyField(
         Tag,
         verbose_name='теги',
-        help_text='Теги товара'
+        help_text='Теги поста'
     )
 
     objects = ItemManager()
 
     class Meta:
-        verbose_name = 'товар'
-        verbose_name_plural = 'товары'
+        verbose_name = 'пост'
+        verbose_name_plural = 'посты'
         default_related_name = 'items'
 
     @property
