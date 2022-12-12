@@ -3,9 +3,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
+from users.models import User
 
 from .managers import ItemManager
-from users.models import User
 
 
 class Tag(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
