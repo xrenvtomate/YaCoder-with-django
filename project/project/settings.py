@@ -22,7 +22,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'sorl.thumbnail',
+
     'users.apps.UsersConfig',
+    'about.apps.AboutConfig',
+    'core.apps.CoreConfig',
+    'homepage.apps.HomepageConfig',
 ]
 
 MIDDLEWARE = [
