@@ -67,12 +67,17 @@ class Comment(models.Model):
         'дата изменения',
         blank=True,
         null=True,
+        auto_now=True,
     )
 
     class Meta:
         verbose_name = 'комментарий'
         verbose_name_plural = 'комментарии'
         default_related_name = 'comments'
+
+    def __str__(self):
+        return (f'{self.post}:{self.user}:'
+                f'{self.edited_on.strftime("%Y-%m-%d %H:%M")}')
 
 
 class Post(PublishableBaseModel, NamedBaseModel):
