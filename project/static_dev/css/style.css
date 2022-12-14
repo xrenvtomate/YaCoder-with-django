@@ -1,0 +1,66 @@
+@media (min-width: 768px) {
+    .container {
+        width: 720px;
+    }
+} 
+@media (min-width: 992px) {
+    .container {
+        width: 700px;
+    }
+} 
+@media (min-width: 1200px) {
+    .container {
+        width: 1100px;
+    }
+}
+
+
+body {
+    background: #18151a;
+    color: #f0f1ff;
+    padding-top: 100px;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 100;
+    background-color: #b700ff9e;
+    backdrop-filter: blur(5px);
+    font-size: 20px;
+}
+
+.signup {
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #fff6;
+    border-radius: 20px;
+    background: rgb(255,135,0);
+    background: linear-gradient(150deg, rgba(255,135,0,1) 0%, rgba(255,0,199,1) 100%);
+    box-shadow: 0px 2px 15px rgba(255, 200, 0, 0.529);
+    
+    transition: all 0.2s ease;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.signup:hover {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+
+.card {
+    margin: 20px;
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 1 / 1;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 2px 30px rgba(248, 120, 255, 0.289)
+}
