@@ -11,16 +11,18 @@
     <link rel="manifest" href="{% static 'img/favicon/site.webmanifest' %}">
     <title>{% block title %}Title{% endblock %}</title>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <header id="header">
       {% block header %}
         {% include 'includes/header.html' %}
       {% endblock %}
     </header>
     <main>
-      {% block content %} No content for you {% endblock %}
+      {% block content %}
+        No content for you
+      {% endblock %}
     </main>
-    <footer id="footer">
+    <footer class="footer mt-auto py-3" id="footer">
       {% block footer %}
         {% include 'includes/footer.html' %}
       {% endblock %}
