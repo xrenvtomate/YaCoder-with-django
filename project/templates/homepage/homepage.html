@@ -10,7 +10,7 @@
       <div class="row">
         {% for post in posts %}
           <div class="col-6 col-lg-4">
-            <a href="{{ post.get_absolute_url }}" style="background-image: url({{post.image.url}})" class="card">
+            <a href="{{ post.get_absolute_url }}" style="background-image: url({{ post.image.url }})" class="card">
               <div class="desc">
                 {{ post.name }}
               </div>
