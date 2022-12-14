@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <div class="cards">
+    <div class="container">
+      <div class="row">
+        {% for post in posts %}
+          <div class="col-6 col-lg-4">
+            <a href="{{ post.get_absolute_url }}" style="background-image: url({{post.image.url}})" class="card">
+              <div class="desc">
+                {{ post.name }}
+              </div>
+              <div class="author">
+                <img src="{{ post.author.profile_pic }}" alt="">
+                  {{ post.author.username }} 
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+

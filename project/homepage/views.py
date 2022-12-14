@@ -16,7 +16,7 @@ class HomeView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'homepage/post_detail.html'
+    template_name = 'homepage/post.html'
     context_object_name = 'post'
 
     def get_object(self):
