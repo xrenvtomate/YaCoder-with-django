@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %}
+Log in :: {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  {% block form %}
+    {% include 'includes/base_form.html' %}
+    <small style="color: #8f8f8f; padding-left: 32px;"><a href="{% url 'users:password_reset' %}" style="text-decoration: none;">Forgot the password?</a></small>
+  {% endblock %}
+{% endblock %}
