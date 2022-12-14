@@ -1,6 +1,7 @@
 from core.models import NamedBaseModel, PublishableBaseModel, SluggedBaseModel
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
 from users.models import User
@@ -105,6 +106,13 @@ class Post(PublishableBaseModel, NamedBaseModel):
         verbose_name='теги',
         help_text='Теги поста'
     )
+    author = models.ForeignKey(
+        User,
+        verbose_name='автор',
+        help_text='автор комментария',
+        default=1,
+        on_delete=models.CASCADE,
+    )
 
     objects = ItemManager()
 
@@ -112,6 +120,9 @@ class Post(PublishableBaseModel, NamedBaseModel):
         verbose_name = 'пост'
         verbose_name_plural = 'посты'
         default_related_name = 'items'
+
+    def get_absolute_url(self):
+        return reverse('homepage:post_detail', kwargs={"pk": self.pk})
 
     @property
     def get_img(self):

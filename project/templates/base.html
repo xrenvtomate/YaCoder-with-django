@@ -12,7 +12,7 @@
     <title>{% block title %}Title{% endblock %}</title>
   </head>
   <body>
-    <header id="header">
+    <header class="header">
       {% block header %}
         {% include 'includes/header.html' %}
       {% endblock %}
@@ -20,7 +20,7 @@
     <main>
       {% block content %} No content for you {% endblock %}
     </main>
-    <footer id="footer">
+    <footer class="footer">
       {% block footer %}
         {% include 'includes/footer.html' %}
       {% endblock %}
