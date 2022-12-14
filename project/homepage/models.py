@@ -122,7 +122,7 @@ class Post(PublishableBaseModel, NamedBaseModel):
         default_related_name = 'items'
 
     def get_absolute_url(self):
-        return reverse('homepage:post_detail', kwargs={"pk": self.pk})
+        return reverse('homepage:post', kwargs={"pk": self.pk})
 
     @property
     def get_img(self):
