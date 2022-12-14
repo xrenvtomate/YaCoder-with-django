@@ -232,3 +232,7 @@ a:hover {
     background-color: #222;
     color: #ccc;
 }
+.post-img {
+    max-width: 100%;
+    max-height: 100%;
+}
