@@ -35,6 +35,7 @@ class CommentAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin, AdminImageMixin):
     list_display = (
         'name',
+        'author',
         'text',
         'is_published',
         'image_tmb',
