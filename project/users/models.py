@@ -6,38 +6,38 @@ from django.urls import reverse
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
-        'имя пользователя',
+        'username',
         max_length=127,
         help_text='Не более 127 символов',
     )
     email = models.EmailField(
-        'электронная почта',
+        'email',
         max_length=254,
         unique=True,
         help_text='Не более 254 символов',
     )
 
     first_name = models.CharField(
-        'имя',
+        'first name',
         max_length=127,
         blank=True,
         null=True,
         help_text='Не более 127 символов',
     )
     last_name = models.CharField(
-        'фамилия',
+        'last name',
         max_length=127,
         blank=True,
         null=True,
         help_text='Не более 127 символов',
     )
     about_me = models.TextField(
-        'обо мне',
+        'about me',
         default='Sample Text',
         blank=True,
     )
     profile_pic = models.ImageField(
-        'изображение профиля',
+        'profile picture',
         upload_to='images/%Y/%m',
         blank=True,
     )
@@ -55,8 +55,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ('username',)
 
     class Meta:
-        verbose_name = 'пользователь'
-        verbose_name_plural = 'пользователи'
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
         default_related_name = 'users'
 
     def __str__(self):
