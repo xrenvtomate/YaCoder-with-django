@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     {{ block.super }}
@@ -12,7 +13,11 @@
       </div>
       <div class="col-4 post-about">
         <div class="post-autor">
-          <img src="{{ post.author.profile_pic.url }}" class="post-author-avatar"></img>
+          {% if post.author.profile_pic %}
+            <img src="{{ post.author.profile_pic.url }}" class="post-author-avatar"></img>
+          {% else %}
+            <img src="{% static 'img/def_profile_pic.jpg' %}" class="post-author-avatar"></img>
+          {% endif %}
         </div>
         <a href="{% url 'homepage:home' %}" class="author-username">{{ post.author.username }}</a>
         <div class="post-desc">

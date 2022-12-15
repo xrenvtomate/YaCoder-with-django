@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     {{ block.super }}
@@ -15,8 +16,13 @@
                 {{ post.name }}
               </div>
               <div class="author">
-                <img src="{{ post.author.profile_pic }}" alt="">
+                {% if post.author.profile_pic %}
+                  <img src="{{ post.author.profile_pic.url }}" alt="">
+                    {{ post.author.username }} 
+                {% else %}
+                  <img src="{% static 'img/def_profile_pic.jpg' %}" alt="">
                   {{ post.author.username }} 
+                {% endif %}
               </div>
             </a>
           </div>
