@@ -223,11 +223,12 @@ a:hover {
     transform: scale(1.1);
 }
 
-.comment-input {
+.dark-input, .dark-input:focus {
     background-color: #222;
     border: 1px solid #fff4;
     color: #ccc;
 }
+
 .comment-input:focus {
     background-color: #222;
     color: #ccc;
