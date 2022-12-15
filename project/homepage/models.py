@@ -88,7 +88,6 @@ class Post(PublishableBaseModel, NamedBaseModel):
     )
     text = models.TextField(
         'описание',
-        default='Sample Text',
         help_text='Описание поста',
         validators=(
         ),
