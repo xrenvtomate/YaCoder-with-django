@@ -54,7 +54,7 @@ a:hover {
     background: rgb(255,135,0);
     background: linear-gradient(150deg, rgba(255,135,0,1) 0%, rgba(255,0,199,1) 100%);
     box-shadow: 0px 2px 15px rgba(255, 200, 0, 0.5);
-    
+    margin: 0 10px;
     transition: all 0.2s ease;
     color: #fff;
     font-weight: bold;
