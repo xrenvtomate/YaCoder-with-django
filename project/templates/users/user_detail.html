@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %}
+User :: {{ block.super }}
+{% endblock %}
+{% block content %}
+<main>
+      <div class="container">
+        <div class="row content">
+          <div class="col-4 userinfo">
+            <div class="username">Bebroid228</div>
+            <img src="img.jpg" class="avatar" />
+            <div class="bio">
+              <h4>Bio:</h4>
+              im amazing and idk..
+            </div>
+            
+          </div>
+
+          <div class="col-8 posts">
+            <a
+              href="#"
+              style="background-image: url(img.jpg)"
+              class="card card-profile"
+            >
+              <div class="desc">
+                description <br />
+                wgwheh
+              </div>
+            </a>
+            <a
+              href="#"
+              style="background-image: url(img.jpg)"
+              class="card card-profile"
+            >
+              <div class="desc">
+                description <br />
+                wgwheh
+              </div>
+            </a>
+            <a
+              href="#"
+              style="background-image: url(img.jpg)"
+              class="card card-profile"
+            >
+              <div class="desc">
+                description <br />
+                wgwheh
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+{% endblock %}
+    
