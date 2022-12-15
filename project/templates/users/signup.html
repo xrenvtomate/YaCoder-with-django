@@ -6,7 +6,9 @@ Sign up :: {{ block.super }}
 {% endblock %}
 
 {% block content %}
-  {% block form %}
-    {% include 'includes/base_form.html' %}
-  {% endblock %}
+  <div class="container">
+    {% block form %}
+      {% include 'includes/base_form.html' %}
+    {% endblock %}
+  </div>
 {% endblock %}
