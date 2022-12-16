@@ -19,7 +19,7 @@
             <img src="{% static 'img/def_profile_pic.jpg' %}" class="post-author-avatar"></img>
           {% endif %}
         </div>
-        <a href="{% url 'homepage:home' %}" class="author-username">{{ post.author.username }}</a>
+        <a href="{% url 'users:user_detail' post.author.pk %}" class="author-username">{{ post.author.username }}</a>
         <div class="post-desc">
           {{ post.text }}
         </div>
