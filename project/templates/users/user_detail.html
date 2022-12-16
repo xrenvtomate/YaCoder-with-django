@@ -2,57 +2,38 @@
 {% load static %} 
 
 {% block title %}
-User :: {{ block.super }}
+{{ disp_user.username }} :: {{ block.super }}
 {% endblock %}
 {% block content %}
-<main>
-      <div class="container">
-        <div class="row content">
-          <div class="col-4 userinfo">
-            <div class="username">Bebroid228</div>
-            <img src="img.jpg" class="avatar" />
-            <div class="bio">
-              <h4>Bio:</h4>
-              im amazing and idk..
-            </div>
-            
-          </div>
-
-          <div class="col-8 posts">
-            <a
-              href="#"
-              style="background-image: url(img.jpg)"
-              class="card card-profile"
-            >
-              <div class="desc">
-                description <br />
-                wgwheh
-              </div>
-            </a>
-            <a
-              href="#"
-              style="background-image: url(img.jpg)"
-              class="card card-profile"
-            >
-              <div class="desc">
-                description <br />
-                wgwheh
-              </div>
-            </a>
-            <a
-              href="#"
-              style="background-image: url(img.jpg)"
-              class="card card-profile"
-            >
-              <div class="desc">
-                description <br />
-                wgwheh
-              </div>
-            </a>
-          </div>
+  <div class="container">
+    <div class="row content">
+      <div class="col-4 userinfo">
+        <div class="username">{{ disp_user.username }}</div>
+        {% if disp_user.profile_pic %}
+          <img src="{{ disp_user.profile_pic.url }}" class="avatar">
+        {% else %}
+          <img src="{% static 'img/def_profile_pic.jpg' %}" class="avatar">
+        {% endif %}
+        <div class="bio">
+          <h4>About me:</h4>
+          {{ disp_user.about_me }}
         </div>
       </div>
-    </main>
-  </body>
+      <div class="col-8 posts">
+        {% for disp_post in disp_user.posts.all %}
+          <a
+            href="{{ disp_post.get_absolute_url }}"
+            style="background-image: url({{ disp_post.image.url }})"
+            class="card card-profile"
+          >
+            <div class="desc">
+              {{ disp_post.text|truncatewords_html:50 }} <br>
+              {{ disp_post.category }}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 {% endblock %}
     
