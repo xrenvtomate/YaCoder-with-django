@@ -1,6 +1,7 @@
 {% load add_attr %}
 <style>
     .form-control {
+        min-width: 300px;
         width: 75%;
     }
 </style>
@@ -23,22 +24,19 @@
   {% csrf_token %}
   <ul>
     {% for field in form %}
-        <div class="mb-3 row">
-            <label for="{{ field.id_for_label }}" class="col-sm-6 col-form-label">
-                {{ field.label }}
-                {% if field.field.required %}
-                <span style="color: red;">*</span>
-                {% endif %}
-            </label>
-            <div class="col-sm-6">
-                {{ field|add_attr:"class:form-control" }}
-                {% if field.help_text %}
-                    <div id="{{ field.id_for_label }}-help" class="form-text">
-                    {{ field.help_text|safe }}
-                    </div>
-                {% endif %}
-            </div>
-        </div>
+      <label for="{{ field.id_for_label }}" class="col-sm-6 col-form-label">
+        {{ field.label }}
+        {% if field.field.required %}
+          <span style="color: red;">*</span>
+        {% endif %}
+      </label>
+      <div class="col-sm-6">
+        {{ field|add_attr:"class:form-control" }}
+        {% if field.help_text %}
+          <div id="{{ field.id_for_label }}-help" class="form-text">
+            {{ field.help_text|safe }}
+          </div>
+        {% endif %}
       </div>
     {% endfor %}
     {% if form %}

@@ -118,7 +118,7 @@ class Post(PublishableBaseModel, NamedBaseModel):
     class Meta:
         verbose_name = 'пост'
         verbose_name_plural = 'посты'
-        default_related_name = 'items'
+        default_related_name = 'posts'
 
     def get_absolute_url(self):
         return reverse('homepage:post', kwargs={"pk": self.pk})
