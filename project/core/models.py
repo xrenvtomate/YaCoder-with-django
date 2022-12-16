@@ -14,7 +14,6 @@ class PublishableBaseModel(models.Model):
 class NamedBaseModel(models.Model):
     name = models.CharField(
         'название',
-        default='Sample name',
         max_length=150,
         blank=True,
     )

@@ -1,22 +1,40 @@
 <nav class="navbar navbar-expand-sm navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'homepage:home' %}">KARTINKI</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {% with request.resolver_match.view_name as view_name %}
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a {% if view_name == 'homepage:home' %}class="nav-link active"{% else %}class="nav-link"{% endif %}aria-current="page" href="{% url 'homepage:home' %}">Home</a>
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'homepage:home' %}">KARTINKI</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      {% with request.resolver_match.view_name as view_name %}
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a {% if view_name == 'homepage:create_post' %}class="nav-link active"{% else %}class="nav-link"{% endif %}aria-current="page" href="{% url 'homepage:create_post' %}">Create Post</a>
+        </li>
+        <li class="nav-item">
+          <a {% if view_name == 'homepage:home' %}class="nav-link active"{% else %}class="nav-link"{% endif %}aria-current="page" href="{% url 'homepage:home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a {% if view_name == 'about:description' %}class="nav-link active"{% else %}class="nav-link"{% endif %} aria-current="page" href="{% url 'about:description' %}">About</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ user.username }}</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'users:password_change' %}">Change password</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'users:logout' %}" style="color: red;">Log out</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <a {% if view_name == 'about:description' %}class="nav-link active"{% else %}class="nav-link"{% endif %} aria-current="page" href="{% url 'about:description' %}">About</a>
@@ -44,4 +62,5 @@
         {% endwith %}
       </div>
     </div>
+  </div>
 </nav>
