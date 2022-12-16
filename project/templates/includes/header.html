@@ -38,10 +38,9 @@
               </ul>
             </li>
           {% else %}
-              <a class="signup" href="{% url 'users:login' %}">Log in</a>
-            <li class="nav-item">
-              <a {% if view_name == 'users:signup' %}class="nav-link active"{% else %}class="nav-link"{% endif %} aria-current="page" href="{% url 'users:signup' %}">Sign up</a>
-            </li>
+          <a {% if view_name == 'users:login' %}class="nav-link active"{% else %}class="nav-link"{% endif %} href="{% url 'users:login' %}">Log in</a>
+
+          <a class="signup" href="{% url 'users:signup' %}">Sign up</a>
           {% endif %}
         </ul>
       {% endwith %}
