@@ -77,6 +77,24 @@ a:hover {
     transition: all 0.3s ease;
 }
 
+.card-form {
+    /* margin-top: 70px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    width: 400px;
+    border-radius: 20px;
+    border: 1px solid #fff2;
+    transition: 0.2s ease;
+    box-shadow: 0px 2px 20px rgba(255, 255, 255, 0.1)
+}
+
+.card-form:hover {
+    transform: scale(1.04);
+    box-shadow: 0px 2px 50px rgba(255, 255, 255, 0.15)
+}
+
 .card:hover {
     transform: scale(1.1);
     box-shadow: 0px 0px 150px rgba(255, 255, 255, 0.4)
