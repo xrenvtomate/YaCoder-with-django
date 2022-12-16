@@ -36,13 +36,31 @@
               <li><a class="dropdown-item" href="{% url 'users:logout' %}" style="color: red;">Log out</a></li>
             </ul>
           </li>
-        {% else %}
-          <a {% if view_name == 'users:login' %}class="nav-link active"{% else %}class="nav-link"{% endif %} href="{% url 'users:login' %}">Log in</a>
-
-          <a class="signup" href="{% url 'users:signup' %}">Sign up</a>
-        {% endif %}
-      </ul>
-      {% endwith %}
+          <li class="nav-item">
+            <a {% if view_name == 'about:description' %}class="nav-link active"{% else %}class="nav-link"{% endif %} aria-current="page" href="{% url 'about:description' %}">About</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ user.username }}</a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:password_change' %}">Change password</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:user_detail' request.user.pk %}">Your profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'users:logout' %}" style="color: red;">Log out</a></li>
+              </ul>
+            </li>
+          {% else %}
+              <a class="signup" href="{% url 'users:login' %}">Log in</a>
+            <li class="nav-item">
+              <a {% if view_name == 'users:signup' %}class="nav-link active"{% else %}class="nav-link"{% endif %} aria-current="page" href="{% url 'users:signup' %}">Sign up</a>
+            </li>
+          {% endif %}
+        </ul>
+        {% endwith %}
+      </div>
     </div>
   </div>
 </nav>

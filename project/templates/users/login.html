@@ -6,10 +6,13 @@ Log in :: {{ block.super }}
 {% endblock %}
 
 {% block content %}
-  <div class="container">
+<div class="card mx-auto mb-auto bg-dark" style="max-height: 400px">
+  <div class="card-body mx-auto">
+    <h5 class="card-title">Log in</h5>
     {% block form %}
     {% include 'includes/base_form.html' %}
     <small style="color: #8f8f8f; padding-left: 32px;"><a href="{% url 'users:password_reset' %}" style="text-decoration: none;">Forgot the password?</a></small>
     {% endblock %}
   </div>
+</div>
 {% endblock %}
