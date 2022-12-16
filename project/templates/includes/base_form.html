@@ -31,7 +31,7 @@
         {% endif %}
       </label>
       <div class="col-sm-6">
-        {{ field|add_attr:"class:form-control" }}
+        {{ field|add_attr:"class:form-control dark-input" }}
         {% if field.help_text %}
           <div id="{{ field.id_for_label }}-help" class="form-text">
             {{ field.help_text|safe }}
