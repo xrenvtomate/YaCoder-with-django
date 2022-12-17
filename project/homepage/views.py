@@ -9,7 +9,7 @@ from .models import Post
 
 
 class HomeView(ListView):
-    paginate_by = 2
+    paginate_by = 9
     model = Post
     template_name = 'homepage/homepage.html'
     context_object_name = 'posts'
