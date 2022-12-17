@@ -9,7 +9,7 @@
   <div class="cards">
     <div class="container">
       <div class="row">
-        {% for post in posts %}
+        {% for post in page_obj %}
           <div class="col-6 col-lg-4">
             <a href="{{ post.get_absolute_url }}" style="background-image: url({{ post.image.url }})" class="card">
               <div class="desc">
@@ -30,4 +30,20 @@
       </div>
     </div>
   </div>
+  <nav aria-label="Лол что это">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">Предыдущая</a></li>
+        <li class="page-item "><a class="page-link disable">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a></li> 
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Первая</a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Следующая</a></li>
+        {% if not page_obj.has_previous %}
+          <li class="page-item "><a class="page-link disable">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a></li> 
+        {% endif %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Последняя</a></li>    
+      {% endif %}
+    </ul>
+  </nav>
 {% endblock %}
