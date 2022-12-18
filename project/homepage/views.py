@@ -9,12 +9,13 @@ from .models import Post
 
 
 class HomeView(ListView):
+    paginate_by = 9
     model = Post
     template_name = 'homepage/homepage.html'
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.published_main()
+        return Post.objects.published_main().reverse()
 
 
 class PostDetailView(DetailView):
