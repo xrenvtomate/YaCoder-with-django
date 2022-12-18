@@ -6,33 +6,39 @@
 {% endblock %}
 {% block content %}
   <div class="container">
-    <div class="row content">
+    <div class="row userrow">
       <div class="col-4 userinfo">
         <div class="username">{{ disp_user.username }}</div>
         {% if disp_user.profile_pic %}
-          <img src="{{ disp_user.profile_pic.url }}" class="avatar">
+        <img src="{{ disp_user.profile_pic.url }}" class="avatar"></img>
         {% else %}
-          <img src="{% static 'img/def_profile_pic.jpg' %}" class="avatar">
+        <img src="{% static 'img/def_profile_pic.jpg' %}" class="avatar"></img>
         {% endif %}
         <div class="bio">
           <h4>About me:</h4>
           {{ disp_user.about_me }}
         </div>
       </div>
-      <div class="col-8 posts">
-        {% for disp_post in disp_user.posts.all %}
-          <a
-            href="{{ disp_post.get_absolute_url }}"
-            style="background-image: url({{ disp_post.image.url }})"
-            class="card card-profile"
-          >
-            <div class="desc">
-              {{ disp_post.text|truncatewords_html:50 }} <br>
-              {{ disp_post.category }}
+    </div>
+    <div class="row">
+    <div class="col-4"></div>
+    <div class="col-8 posts">
+      {% for post in disp_user.posts.all %}
+      <div class="post-min">
+        <div class="row">
+          <div class="col-8">
+            <pre><code>{{ post.code|truncatechars:800}}</code></pre>
+          </div>
+          <div class="col-4 post-about">
+            <h2>{{ post.name }}</h2>
+            <div class="post-desc">
+              {{post.text|truncatechars:100}}
             </div>
-          </a>
-        {% endfor %}
+            <div class="viewfull"><a href="{{ post.get_absolute_url }}" class="viewfull-btn">view full post</a></div>
+          </div>
+        </div>
       </div>
+      {% endfor %}
     </div>
   </div>
 {% endblock %}

@@ -8,10 +8,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
     <link rel="manifest" href="{% static 'img/favicon/site.webmanifest' %}">
     <title>{% block title %}Title{% endblock %}</title>
   </head>
   <body class="d-flex flex-column min-vh-100">
+    <script>hljs.highlightAll();</script>
     <header class="header">
       {% block header %}
         {% include 'includes/header.html' %}

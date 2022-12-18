@@ -8,23 +8,29 @@
 {% block content %}
   <div class="cards">
     <div class="container">
-      <div class="row">
+      <div class="posts">
         {% for post in page_obj %}
-          <div class="col-6 col-lg-4">
-            <a href="{{ post.get_absolute_url }}" style="background-image: url({{ post.image.url }})" class="card">
-              <div class="desc">
-                {{ post.name }}
+          <div class="post-min">
+            <div class="row">
+              <div class="col-8">
+                <pre><code>{{ post.code}}</code></pre>
               </div>
-              <div class="author">
-                {% if post.author.profile_pic %}
-                  <img src="{{ post.author.profile_pic.url }}" alt="">
-                  {{ post.author.username }} 
-                {% else %}
-                  <img src="{% static 'img/def_profile_pic.jpg' %}" alt="">
-                  {{ post.author.username }} 
-                {% endif %}
+              <div class="col-4 post-about">
+                <h2>{{ post.name }}</h2>
+                <div class="author">
+                  {% if post.author.profile_pic %}
+                    <img class="author-avatar" src="{{ post.author.profile_pic.url }}" alt="">
+                    {% else %}
+                    <img class="author-avatar" src="{% static 'img/def_profile_pic.jpg' %}" alt="">
+                    {% endif %}
+                    <a class="author-username" href="#">{{ post.author.username }} </a>
+                </div>
+                <div class="post-desc">
+                  {{post.text|truncatechars:100}}
+                </div>
+                <div class="viewfull"><a href="{{ post.get_absolute_url }}" class="viewfull-btn">view full post</a></div>
               </div>
-            </a>
+            </div>
           </div>
         {% endfor %}
       </div>
