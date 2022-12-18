@@ -21,14 +21,14 @@
     }
 }
 
-
 body {
     background: #18151a;
     color: #f0f1ff;
     padding-top: 100px;
 }
 
-a:hover {
+a:hover, a {
+    text-decoration: none;
     color: #fff;
 }
 
@@ -54,7 +54,7 @@ a:hover {
     background: rgb(255,135,0);
     background: linear-gradient(150deg, rgba(255,135,0,1) 0%, rgba(255,0,199,1) 100%);
     box-shadow: 0px 2px 15px rgba(255, 200, 0, 0.5);
-    margin: 0 10px;
+    
     transition: all 0.2s ease;
     color: #fff;
     font-weight: bold;
@@ -66,90 +66,108 @@ a:hover {
     box-shadow: 0px 2px 30px rgba(255, 200, 0, 0.6);
 }
 
-
-.card {
-    margin: 40px 20px;
-    background-size: cover;
-    background-position: center;
-    aspect-ratio: 1 / 1;
-    border: none;
-    
-    transition: all 0.3s ease;
-}
-
-.card-form {
-    /* margin-top: 70px; */
+.posts {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 40px;
-    width: 400px;
-    border-radius: 20px;
-    border: 1px solid #fff2;
-    transition: 0.2s ease;
-    box-shadow: 0px 2px 20px rgba(255, 255, 255, 0.1)
+    align-items: center;
 }
 
-.card-form:hover {
-    transform: scale(1.04);
-    box-shadow: 0px 2px 50px rgba(255, 255, 255, 0.15)
+.post-min {
+    width: 100%;
+    
+    border-radius: 25px;
+    min-width: 400px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(254, 222, 255, 0.2);
+    background-color: rgb(73, 0, 118);
+    padding: 5px;
+    box-shadow: 0 0 20px rgba(98, 0, 143, 0.461);
+    margin-bottom: 80px;
 }
 
-.card:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 0px 150px rgba(255, 255, 255, 0.4)
+.post-min:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 40px rgba(98, 0, 143, 0.461);
 }
 
-.card .desc {
+.post-about {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.author {
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+}
+
+.author-avatar {
+    height: 1em;
+}
+
+.author-username {
     text-decoration: none;
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.667);
-    position: absolute;
-    opacity: 0;
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.author-username:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+.author-username::before {
+    content: '@';
+}
+
+.post-desc {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+pre {
     margin-bottom: 0;
+    height: 100%;
+}
+
+.post-min code.hljs {
+    border-radius: 20px;
+    padding: 20px;
+    height: 100%;
+}
+
+.viewfull {
+    text-align: center;
+    height: auto;
+    /* position: absolute; */
     bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 4px;
+}
+
+.viewfull-btn {
+    display: inline-block;
+    background: rgb(105,0,255);
+    background: linear-gradient(150deg, rgba(105,0,255,1) 0%, rgba(255,0,131,1) 100%);
+    padding: 0 10px;
     margin: 5px;
     border-radius: 5px;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    transition: all 0.3s ease;
-}
-
-.card:hover .desc {
-    opacity: 1;
-}
-
-.card .author {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(34, 17, 41, 0.667);
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    color: #fff;
-    height: 30px;
     transition: all 0.2s ease;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #6666;
 }
 
-.card:hover .author {
-    transform: translateY(-30px);
-    border-radius: 5px;
+.viewfull-btn:hover {
+    transform: scale(1.05);
 }
 
-.card .author img {
-    width: 30px;
-    border-radius: 50%;
-}
 
 .userinfo {
+    /* position: fixed; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -170,54 +188,15 @@ a:hover {
     font-weight: bold;
     border-bottom: 3px solid rgb(255, 255, 255);
 }
+
 .avatar {
     width: 250px;
     margin: 20px;
 }
 
-.posts {
-    display: flex;
-    flex-direction: column;
-}
-
 .card-profile {
     max-width: 500px;
     min-width: 200px;
-}
-
-.post-about {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.post-author-avatar {
-    width: 150px;
-}
-
-.author-username {
-    text-decoration: none;
-    color: #fff;
-    font-size: 30px;
-}
-
-.author-username:hover {
-    text-decoration: underline;
-    color: #fff;
-}
-
-.author-username::before {
-    content: '@';
-}
-
-.post-desc {
-    text-align: center;
-    margin: 10px;
-    font-size: 18px;
-    border: 1px solid #fff4;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #fff4;
-    padding: 15px;
 }
 
 .post {
@@ -241,17 +220,40 @@ a:hover {
     transform: scale(1.1);
 }
 
-.dark-input, .dark-input:focus {
+.dark-input {
     background-color: #222;
     border: 1px solid #fff4;
     color: #ccc;
 }
 
-.comment-input:focus {
+.dark-input:focus {
     background-color: #222;
     color: #ccc;
 }
-.post-img {
-    max-width: 100%;
-    max-height: 100%;
+
+.userrow {
+    position: fixed;
+    width: inherit;
+}
+
+.card-form {
+    /* margin-top: 70px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    width: 400px;
+    border-radius: 20px;
+    border: 1px solid #fff2;
+    transition: 0.2s ease;
+    box-shadow: 0px 2px 20px rgba(255, 255, 255, 0.1)
+}
+
+.card-form:hover {
+    transform: scale(1.04);
+    box-shadow: 0px 2px 50px rgba(255, 255, 255, 0.15)
+}
+
+h2 {
+    text-align: center;
 }
