@@ -1,5 +1,4 @@
 from core.models import NamedBaseModel, PublishableBaseModel, SluggedBaseModel
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
 from users.models import User
@@ -15,21 +14,11 @@ class Tag(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
 
 
 class ProgLanguage(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
-    weight = models.IntegerField(
-        default=100,
-        help_text='Вес категории',
-        validators=(
-            MinValueValidator(1),
-            MaxValueValidator(32766),
-        ),
-        blank=True,
-        null=True,
-    )
 
     class Meta:
-        verbose_name = 'категория'
-        verbose_name_plural = 'категории'
-        default_related_name = 'categories'
+        verbose_name = 'язык программирования'
+        verbose_name_plural = 'языки программирования'
+        default_related_name = 'prog_languages'
 
 
 class Comment(models.Model):
