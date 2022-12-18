@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
-from .models import ProgLanguage, Comment, Post, Tag
+
+from .models import Comment, Post, ProgLanguage, Tag
 
 admin.site.register(ProgLanguage)
 admin.site.register(Tag)
