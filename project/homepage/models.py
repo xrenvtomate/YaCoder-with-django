@@ -2,11 +2,9 @@ from core.models import NamedBaseModel, PublishableBaseModel, SluggedBaseModel
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
-from django.utils.safestring import mark_safe
-from sorl.thumbnail import get_thumbnail
 from users.models import User
 
-from .managers import ItemManager
+from .managers import PostManager
 
 
 class Tag(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
@@ -16,7 +14,7 @@ class Tag(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
         default_related_name = 'tags'
 
 
-class Category(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
+class ProgLanguage(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
     weight = models.IntegerField(
         default=100,
         help_text='Вес категории',
@@ -82,22 +80,20 @@ class Comment(models.Model):
 
 
 class Post(PublishableBaseModel, NamedBaseModel):
-    image = models.ImageField(
-        'изображение',
-        upload_to='images/%Y/%m',
+    code = models.TextField(
+        'код',
+        blank=True,
     )
     text = models.TextField(
         'описание',
         help_text='Описание поста',
-        validators=(
-        ),
         blank=True
     )
-    category = models.ForeignKey(
-        Category,
-        verbose_name='категория',
-        help_text='Категория поста',
-        on_delete=models.CASCADE,
+    prog_language = models.ForeignKey(
+        ProgLanguage,
+        verbose_name='язык программирования',
+        help_text='ЯП',
+        on_delete=models.PROTECT,
         null=True,
     )
     tags = models.ManyToManyField(
@@ -113,7 +109,7 @@ class Post(PublishableBaseModel, NamedBaseModel):
         on_delete=models.CASCADE,
     )
 
-    objects = ItemManager()
+    objects = PostManager()
 
     class Meta:
         verbose_name = 'пост'
@@ -122,22 +118,3 @@ class Post(PublishableBaseModel, NamedBaseModel):
 
     def get_absolute_url(self):
         return reverse('homepage:post', kwargs={"pk": self.pk})
-
-    @property
-    def get_img(self):
-        return get_thumbnail(
-            self.image,
-            '300x300',
-            crop='center',
-            quality=50
-        )
-
-    def image_tmb(self):
-        if self.image:
-            return mark_safe(
-                f'<img src="{self.get_img.url}"'
-            )
-        return 'Нет изображения'
-
-    image_tmb.short_description = 'Изображение'
-    image_tmb.allow_tags = True
