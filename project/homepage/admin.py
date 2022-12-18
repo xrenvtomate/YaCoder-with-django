@@ -1,11 +1,10 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
-from sorl.thumbnail.admin import AdminImageMixin
 
-from .models import Category, Comment, Post, Tag
+from .models import Comment, Post, ProgLanguage, Tag
 
-admin.site.register(Category)
+admin.site.register(ProgLanguage)
 admin.site.register(Tag)
 
 
@@ -32,17 +31,16 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin, AdminImageMixin):
+class PostAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'author',
+        'code',
         'text',
         'is_published',
-        'image_tmb',
     )
     list_editable = (
         'is_published',
     )
     list_display_links = ('name',)
     filter_horizontal = ('tags',)
-    readonly_fields = ('image_tmb',)

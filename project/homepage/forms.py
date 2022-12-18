@@ -9,9 +9,9 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = (
             Post.name.field.name,
-            Post.image.field.name,
+            Post.code.field.name,
             Post.text.field.name,
-            Post.category.field.name,
+            Post.prog_language.field.name,
             Post.tags.field.name,
         )
 

@@ -3,14 +3,14 @@ from django.db import models
 from . import models as local_models
 
 
-class ItemManager(models.Manager):
+class PostManager(models.Manager):
     def published_main(self):
         return (
             self.get_queryset()
                 .filter(
                     is_published=True,
                     )
-                .select_related('category')
+                .select_related('prog_language')
                 .order_by('name')
                 .prefetch_related(
                     models.Prefetch(
