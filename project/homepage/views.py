@@ -32,7 +32,9 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = PostForm
 
     def form_valid(self, form):
+        print('/////')
         form.save()
+        print('//////////////////')
         return redirect('homepage:home')
 
     def form_invalid(self, form):
