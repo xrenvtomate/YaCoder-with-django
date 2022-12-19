@@ -25,6 +25,7 @@ body {
     background: #18151a;
     color: #f0f1ff;
     padding-top: 100px;
+    font-family: 'open-sans', sans-serif;
 }
 
 a:hover, a {
@@ -216,7 +217,7 @@ pre {
     color: #fff;
     padding: 5px 10px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 10px;
     border: none;
     box-shadow: 0 0 10px #fff4;
