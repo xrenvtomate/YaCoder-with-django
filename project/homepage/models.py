@@ -9,59 +9,59 @@ from .managers import PostManager
 
 class Tag(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
     class Meta:
-        verbose_name = 'тег'
-        verbose_name_plural = 'теги'
+        verbose_name = 'tag'
+        verbose_name_plural = 'tags'
         default_related_name = 'tags'
 
 
 class ProgLanguage(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
 
     class Meta:
-        verbose_name = 'язык программирования'
-        verbose_name_plural = 'языки программирования'
+        verbose_name = 'programming language'
+        verbose_name_plural = 'programming languages'
         default_related_name = 'prog_languages'
 
 
 class Comment(models.Model):
     text = models.TextField(
-        'комментарий',
+        'comment',
         max_length=500,
         blank=True,
     )
     user = models.ForeignKey(
         User,
-        verbose_name='пользователь',
-        help_text='автор комментария',
+        verbose_name='user',
+        help_text='Comment author',
         on_delete=models.CASCADE,
     )
     post = models.ForeignKey(
         'Post',
-        verbose_name='пост',
-        help_text='пост, под которым находится комментарий',
+        verbose_name='post',
+        help_text='Post under which the comment is written',
         on_delete=models.CASCADE,
     )
     prev_comment = models.ForeignKey(
         'self',
-        verbose_name='комментарий сверху',
-        help_text='комментарий, на который отвечает этот комментарий',
+        verbose_name='above comment',
+        help_text='Comment to which this comment is replying to',
         on_delete=models.CASCADE,
         blank=True,
         null=True,
     )
     created_on = models.DateTimeField(
-        'дата создания',
+        'created on',
         auto_now_add=True,
     )
     edited_on = models.DateTimeField(
-        'дата изменения',
+        'edited on',
         blank=True,
         null=True,
         auto_now=True,
     )
 
     class Meta:
-        verbose_name = 'комментарий'
-        verbose_name_plural = 'комментарии'
+        verbose_name = 'comment'
+        verbose_name_plural = 'comments'
         default_related_name = 'comments'
 
     def __str__(self):
@@ -71,12 +71,13 @@ class Comment(models.Model):
 
 class Post(PublishableBaseModel, NamedBaseModel):
     code = models.TextField(
-        'код',
+        'code',
+        help_text='Your code',
         blank=True,
     )
     text = models.TextField(
-        'описание',
-        help_text='Описание поста',
+        'description',
+        help_text='Code description',
         blank=True
     )
     created_on = models.DateTimeField(
@@ -100,20 +101,20 @@ class Post(PublishableBaseModel, NamedBaseModel):
     )
     prog_language = models.ForeignKey(
         ProgLanguage,
-        verbose_name='язык программирования',
-        help_text='ЯП',
+        verbose_name='programming language',
+        help_text='Programming language',
         on_delete=models.PROTECT,
         null=True,
     )
     tags = models.ManyToManyField(
         Tag,
-        verbose_name='теги',
-        help_text='Теги поста'
+        verbose_name='tags',
+        help_text='Post tags'
     )
     author = models.ForeignKey(
         User,
-        verbose_name='автор',
-        help_text='автор комментария',
+        verbose_name='author',
+        help_text='Post author',
         default=1,
         on_delete=models.CASCADE,
     )
@@ -121,8 +122,8 @@ class Post(PublishableBaseModel, NamedBaseModel):
     objects = PostManager()
 
     class Meta:
-        verbose_name = 'пост'
-        verbose_name_plural = 'посты'
+        verbose_name = 'post'
+        verbose_name_plural = 'posts'
         default_related_name = 'posts'
 
     def get_absolute_url(self):
@@ -134,3 +135,6 @@ class Post(PublishableBaseModel, NamedBaseModel):
             ) - self.created_on
         ).total_seconds()
         return reverse('homepage:post', kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return f'{self.name}:{self.text}:'

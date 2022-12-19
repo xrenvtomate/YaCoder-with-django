@@ -3,7 +3,7 @@ from django.db import models
 
 class PublishableBaseModel(models.Model):
     is_published = models.BooleanField(
-        'опубликовано',
+        'is published',
         default=True
     )
 
@@ -13,7 +13,7 @@ class PublishableBaseModel(models.Model):
 
 class NamedBaseModel(models.Model):
     name = models.CharField(
-        'название',
+        'name',
         max_length=150,
         blank=True,
     )
@@ -27,11 +27,11 @@ class NamedBaseModel(models.Model):
 
 class SluggedBaseModel(models.Model):
     slug = models.SlugField(
-        'слаг',
+        'slug',
         max_length=200,
         unique=True,
         blank=True,
-        help_text='Слаг'
+        help_text='Slug'
     )
 
     class Meta:

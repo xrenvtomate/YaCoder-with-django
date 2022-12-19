@@ -1,4 +1,5 @@
 {% load add_attr %}
+{% load field_type %}
 <style>
     .form-control {
         min-width: 300px;
@@ -24,24 +25,28 @@
   {% csrf_token %}
   <ul>
     {% for field in form %}
-      <label for="{{ field.id_for_label }}" class="col-sm-6 col-form-label">
+      <label for="{{ field.id_for_label }}" class="col-sm-8 col-form-label">
         {{ field.label }}
         {% if field.field.required %}
           <span style="color: red;">*</span>
         {% endif %}
       </label>
-      <div class="col-sm-6">
-        {{ field|add_attr:"class:form-control dark-input" }}
+      <div class="col-sm-8">
+        {% if field|field_type == "SelectMultiple" %}
+          {{ field|add_attr:"class:selectpicker, data-style: btn-secondary" }}
+        {% else %}
+          {{ field|add_attr:"class:form-control dark-input" }}
+        {% endif %}
         {% if field.help_text %}
-          <div id="{{ field.id_for_label }}-help" class="form-text">
-            {{ field.help_text|safe }}
-          </div>
+        <div id="{{ field.id_for_label }}-help" class="form-text">
+          {{ field.help_text|safe }}
+        </div>
         {% endif %}
       </div>
     {% endfor %}
     {% if form %}
     <div>
-      <button class="btn btn-danger" type="submit" href="{% url 'homepage:home' %}" style="margin-top: 20px;">Send</button>
+      <button class="btn-send" type="submit" href="{% url 'homepage:home' %}" style="margin-top: 20px;">Send</button>
     </div>
     {% endif %}
   </ul>

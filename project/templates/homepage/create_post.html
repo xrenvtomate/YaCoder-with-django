@@ -14,42 +14,13 @@ Create Post :: {{ block.super }}
 {% endblock %}
 
 {% block content %}
-  {% if form.errors %}
-    {% for field in form %}
-      {% for error in field.errors %}
-        <div class="alert alert-danger" role="alert">
-          {{ error|escape }}
-        </div>
-      {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-      <div class="alert alert-danger" role="alert">
-        {{ error|escape }}
-      </div>
-    {% endfor %}
-  {% endif %}
-
-  <form method="post" action="" style="margin-top: 20px;">
-    {% csrf_token %}
-    <p>{{ rating.rating }}</p>
-    <label for="{{ form.rating.id_for_label }}" class="form-label">
-      {{ form.rating.label }}
-      {% if form.rating.field.required %}
-        <span style="color: red;">*</span>
-      {% endif %}
-    </label> 
-    <br>
-    {% for radio in form.rating %}
-      <div class="form-check form-check-inline">
-        <div class="custom-control custom-radio">
-          {{ radio.tag }}
-          <label class="custom-control-label" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
-        </div>
-      </div>
-    {% endfor %}
-    <br>
-    {% if form %}
-        <button class="btn btn-danger" type="submit" href="{% url 'homepage:home' %}" style="margin-top: 20px; margin-bottom: 20px;">Отправить</button>
-    {% endif %}
-  </form>
+  <div class="container">
+    <div class="ml-2">
+      <h3 style="color: #8f8f8f;">Create Post</h3>
+      <hr>
+    </div>
+    {% block form %}
+        {% include 'includes/base_form.html' %}
+    {% endblock %}
+  </div>
 {% endblock %}
