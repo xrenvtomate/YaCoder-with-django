@@ -38,6 +38,8 @@ class PostAdmin(admin.ModelAdmin):
         'code',
         'text',
         'is_published',
+        'created_on',
+        'views'
     )
     list_editable = (
         'is_published',

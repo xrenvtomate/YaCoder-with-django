@@ -15,7 +15,7 @@ class HomeView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.published_main().reverse()
+        return Post.objects.published_main().order_by('popularity')
 
 
 class PostDetailView(DetailView):

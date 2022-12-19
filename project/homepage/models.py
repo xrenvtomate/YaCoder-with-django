@@ -2,6 +2,7 @@ from core.models import NamedBaseModel, PublishableBaseModel, SluggedBaseModel
 from django.db import models
 from django.urls import reverse
 from users.models import User
+import datetime
 
 from .managers import PostManager
 
@@ -79,6 +80,25 @@ class Post(PublishableBaseModel, NamedBaseModel):
         help_text='Code description',
         blank=True
     )
+    created_on = models.DateTimeField(
+        'дата создания',
+        help_text='дата создания поста',
+        auto_now_add=True,
+    )
+    views = models.PositiveIntegerField(
+        verbose_name='просмотры',
+        blank=True,
+        default=0,
+    )
+    age_of_post = models.DurationField(
+        default=datetime.timedelta(0)
+    )
+    popularity = models.FloatField(
+        verbose_name='популярность',
+        help_text='популярность поста = просмотры \ время жизни поста',
+        default=0,
+        blank=True,
+    )
     prog_language = models.ForeignKey(
         ProgLanguage,
         verbose_name='programming language',
@@ -107,6 +127,13 @@ class Post(PublishableBaseModel, NamedBaseModel):
         default_related_name = 'posts'
 
     def get_absolute_url(self):
+        self.views += 1
+        self.save()
+        self.popularity = self.views / (
+            datetime.datetime.now(
+                tz=self.created_on.tzinfo
+            ) - self.created_on
+        ).total_seconds()
         return reverse('homepage:post', kwargs={"pk": self.pk})
 
     def __str__(self):
