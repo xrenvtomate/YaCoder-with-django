@@ -96,6 +96,7 @@ a:hover, a {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
     align-items: center;
 }
 
@@ -143,12 +144,6 @@ pre {
     height: 100%;
 }
 
-.post-min code.hljs {
-    border-radius: 20px;
-    padding: 20px;
-    height: 100%;
-}
-
 .viewfull {
     text-align: center;
     height: auto;
@@ -161,12 +156,11 @@ pre {
     background: rgb(105,0,255);
     background: linear-gradient(150deg, rgba(105,0,255,1) 0%, rgba(255,0,131,1) 100%);
     padding: 0 10px;
-    margin: 5px;
-    border-radius: 5px;
+    margin-top: 15px;
+    border-radius: 10px;
     transition: all 0.2s ease;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
-    border: 1px solid #6666;
 }
 
 .viewfull-btn:hover {
@@ -175,7 +169,6 @@ pre {
 
 
 .userinfo {
-    /* position: fixed; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -211,13 +204,20 @@ pre {
     margin-bottom: 30px;
 }
 
+code.hljs {
+    border-radius: 20px;
+    border: 1px solid #fff2;
+    height: 100%;
+}
+
 .btn-send {
-    background: rgb(105,0,255);
-    background: linear-gradient(150deg, rgba(105,0,255,1) 0%, rgba(255,0,131,1) 100%);
+    background: rgb(75,0,255);
+    background: linear-gradient(150deg, rgba(75,0,255,1) 0%, rgba(186,0,255,1) 100%);
     color: #fff;
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 18px;
+    font-weight: bold;
     margin-top: 10px;
     border: none;
     box-shadow: 0 0 10px #fff4;
@@ -245,7 +245,6 @@ pre {
 }
 
 .card-form {
-    /* margin-top: 70px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -264,4 +263,23 @@ pre {
 
 h2 {
     text-align: center;
+    font-size: 40px;
+}
+
+.minicard {
+    border-radius: 10px;
+    padding: 3px 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.lang {
+    background: rgb(0,255,156);
+    background: linear-gradient(150deg, rgba(0,255,156,1) 0%, rgba(0,157,255,1) 100%);
+    color: #333;
+}
+
+.tag {
+    background: rgb(120,0,250);
+    background: linear-gradient(150deg, rgba(120,0,250,1) 0%, rgba(255,105,0,1) 100%);
 }
