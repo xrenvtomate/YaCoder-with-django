@@ -98,11 +98,18 @@ a:hover, a {
     align-items: center;
 }
 
+.post-author-avatar {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .author {
     display: flex;
     font-size: 16px;
     align-items: center;
 }
+
+
 
 .author-avatar {
     height: 1em;

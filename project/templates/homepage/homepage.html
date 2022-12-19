@@ -13,7 +13,7 @@
           <div class="post-min">
             <div class="row">
               <div class="col-8">
-                <pre><code>{{ post.code }}</code></pre>
+                <pre><code>{{ post.code|truncatewords_html:30 }}</code></pre>
               </div>
               <div class="col-4 post-about">
                 <h2>{{ post.name }}</h2>
