@@ -14,7 +14,8 @@ class CommentAdmin(admin.ModelAdmin):
         'id',
         'link_to_user',
         'link_to_post',
-        'prev_comment',
+        'parent_comment',
+        'replied_comment',
         'created_on',
         'edited_on'
     )

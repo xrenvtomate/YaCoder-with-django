@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.functions import Coalesce
 
 from . import models as local_models
 
@@ -20,19 +21,15 @@ class PostManager(models.Manager):
                 )
         )
 
-    def published_by_category(self):
+
+class CommentManager(models.Manager):
+    def select_by_new(self):
         return (
             self.get_queryset()
-                .filter(is_published=True)
-                .select_related('category')
                 .order_by(
-                    'category__name',
-                    'name'
-                    )
-                .prefetch_related(
-                    models.Prefetch(
-                        'tags',
-                        queryset=local_models.Tag.objects.all()
+                    Coalesce(
+                        'parent_comment',
+                        'pk',
                     )
                 )
         )

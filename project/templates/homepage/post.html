@@ -31,17 +31,48 @@
         </div>
       </div>
     </div>
-    <form>
-      <label class="form-label">comment</label>
-      <input type="text" class="form-control dark-input" placeholder="Your comment">
-      <div id="emailHelp" class="form-text">Don't swear pls</div>
-      <button type="submit" class="btn-send">send comment</button>
-    </form>
-    {% for comment in post.comments.all %}
-      <div class="comment-input">
-        {{ comment.user }}: {{ comment.text }}
-      </div>
-    {% endfor %}
+    {% block form %}
+      {% include 'includes/base_form.html' %}
+    {% endblock %}
+    {% block comments %}
+      {% for cmnt in comments %}
+        {% if cmnt.parent_comment %}
+          <div class="row" style="margin-left:40px;">
+        {% else %}
+          <div class="row">   
+        {% endif %}     
+          <div class="col-1 comment-profile-pic">
+            <div class="comment-author">
+              {% if cmnt.user.profile_pic %}
+                <img src="{{ cmnt.user.profile_pic.url }}" class="post-author-avatar"></img>
+              {% else %}
+                <img src="{% static 'img/def_profile_pic.jpg' %}" class="post-author-avatar"></img>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-11 comment-main">
+            <div class="card-header comment-header">
+              <span>
+                <a href="{% url 'users:user_detail' cmnt.user.pk %}" class="author-username">{{ cmnt.user.username }}</a>
+              </span>
+              <span> · {{ cmnt.created_on|timesince }} ago</span>
+                {% if cmnt.edited_on != cmnt.created_on %}
+                  <span> · Edited {{ cmnt.edited_on|timesince }} ago</span>
+                {% endif %}
+            </div>
+            <div class="card-body">
+              <div class="comment-desc">
+                {{ cmnt.text }}
+              </div>
+            </div>
+            <div class="card-footer text-muted">
+              <a href="{% url 'users:user_detail' cmnt.user.pk %}">Reply</a>
+            </div>
+          </div>
+        </div>
+        <hr style="margin-left:50px;">
+      {% endfor %}
+    {% endblock %}
   </div>
 {% endblock %}
 
