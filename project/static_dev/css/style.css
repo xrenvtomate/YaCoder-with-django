@@ -283,3 +283,7 @@ h2 {
     background: rgb(120,0,250);
     background: linear-gradient(150deg, rgba(120,0,250,1) 0%, rgba(255,105,0,1) 100%);
 }
+
+.tag::before {
+    content: "#";
+}
