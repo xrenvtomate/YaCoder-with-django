@@ -23,7 +23,7 @@ class PostDetailView(FormMixin, DetailView):
     template_name = 'homepage/post.html'
     context_object_name = 'post'
     form_class = CommentForm
-    
+
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():

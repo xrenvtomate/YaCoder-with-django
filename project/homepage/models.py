@@ -1,10 +1,11 @@
+import datetime
+
 from core.models import NamedBaseModel, PublishableBaseModel, SluggedBaseModel
 from django.db import models
 from django.urls import reverse
 from users.models import User
-import datetime
 
-from .managers import PostManager, CommentManager
+from .managers import CommentManager, PostManager
 
 
 class Tag(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
