@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormMixin
 from django.views.generic.list import ListView
 
-from .forms import PostForm
-from .models import Post
+from .forms import CommentForm, PostForm
+from .models import Comment, Post
 
 
 class HomeView(ListView):
@@ -18,13 +18,36 @@ class HomeView(ListView):
         return Post.objects.published_main().order_by('popularity')
 
 
-class PostDetailView(DetailView):
+class PostDetailView(FormMixin, DetailView):
     model = Post
     template_name = 'homepage/post.html'
     context_object_name = 'post'
+    form_class = CommentForm
+    
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            comment_text = form.cleaned_data['text']
+            user = self.request.user
+            post = self.get_object()
+            Comment.objects.create(
+                text=comment_text,
+                user=user,
+                post=post,
+            )
+            return redirect('homepage:post', pk=self.kwargs['pk'])
+        else:
+            return self.form_invalid(form)
 
     def get_object(self):
         return get_object_or_404(Post, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comment.objects.select_by_new().filter(
+            post=self.kwargs['pk'],
+        )
+        return context
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):
@@ -32,9 +55,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = PostForm
 
     def form_valid(self, form):
-        print('/////')
         form.save()
-        print('//////////////////')
         return redirect('homepage:home')
 
     def form_invalid(self, form):

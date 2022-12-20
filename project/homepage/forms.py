@@ -1,6 +1,21 @@
 from django import forms
 
-from .models import Post, Tag
+from .models import Post, Tag, Comment
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = (
+            Comment.text.field.name,
+        )
+        labels = {
+            Comment.text.field.name: 'Write your comment',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class PostForm(forms.ModelForm):

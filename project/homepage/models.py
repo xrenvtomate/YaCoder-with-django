@@ -4,7 +4,7 @@ from django.urls import reverse
 from users.models import User
 import datetime
 
-from .managers import PostManager
+from .managers import PostManager, CommentManager
 
 
 class Tag(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
@@ -40,9 +40,19 @@ class Comment(models.Model):
         help_text='Post under which the comment is written',
         on_delete=models.CASCADE,
     )
-    prev_comment = models.ForeignKey(
+    parent_comment = models.ForeignKey(
+        'self',
+        verbose_name='parent comment',
+        related_name='child_comments',
+        help_text='The head comment',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
+    replied_comment = models.ForeignKey(
         'self',
         verbose_name='above comment',
+        related_name='replying_comments',
         help_text='Comment to which this comment is replying to',
         on_delete=models.CASCADE,
         blank=True,
@@ -58,6 +68,7 @@ class Comment(models.Model):
         null=True,
         auto_now=True,
     )
+    objects = CommentManager()
 
     class Meta:
         verbose_name = 'comment'
@@ -65,8 +76,8 @@ class Comment(models.Model):
         default_related_name = 'comments'
 
     def __str__(self):
-        return (f'{self.post}:{self.user}:'
-                f'{self.edited_on.strftime("%Y-%m-%d %H:%M")}')
+        return (f'{self.user}:{self.text}:'
+                f'{self.created_on.strftime("%Y-%m-%d %H:%M")}')
 
 
 class Post(PublishableBaseModel, NamedBaseModel):
@@ -95,7 +106,7 @@ class Post(PublishableBaseModel, NamedBaseModel):
     )
     popularity = models.FloatField(
         verbose_name='популярность',
-        help_text='популярность поста = просмотры \ время жизни поста',
+        help_text='популярность поста = просмотры / время жизни поста',
         default=0,
         blank=True,
     )
