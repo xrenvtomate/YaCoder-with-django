@@ -20,10 +20,10 @@
                 <div class="author">
                   {% if post.author.profile_pic %}
                     <img class="author-avatar" src="{{ post.author.profile_pic.url }}" alt="">
-                    {% else %}
+                  {% else %}
                     <img class="author-avatar" src="{% static 'img/def_profile_pic.jpg' %}" alt="">
-                    {% endif %}
-                    <a class="author-username" href="#">{{ post.author.username }} </a>
+                  {% endif %}
+                  <a class="author-username" href="#">{{ post.author.username }} </a>
                 </div>
                 <div class="post-desc">
                   {{post.text|truncatechars:100}}
