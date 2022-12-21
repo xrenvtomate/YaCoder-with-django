@@ -14,7 +14,7 @@ $(document).ready(function(){
                     form.removeClass('liked');
                 }
                 else form.addClass('liked');
-                form.find('button').text(`${likes} likes`)
+                form.find('button').html(`${likes} <i class="fa-solid fa-heart"></i>`)
             }
         })
     });
