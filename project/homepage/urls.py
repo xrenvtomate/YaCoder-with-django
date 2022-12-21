@@ -11,5 +11,4 @@ urlpatterns = [
             name='post'),
     re_path(r'^like/(?P<pk>[1-9][0-9]*)/$', views.likeView,
             name='like')
-    
 ]

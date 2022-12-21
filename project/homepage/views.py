@@ -63,8 +63,9 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         return render(self.request, 'homepage/create_post.html',
                       {'form': form})
 
+
 def likeView(req, pk):
-    if req.method=='POST':
+    if req.method == 'POST':
         user = req.user
         post = Post.objects.get(pk=pk)
         if user in post.likes.all():
