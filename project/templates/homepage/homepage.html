@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    {{ block.super }}
+{{ block.super }}
 {% endblock %}
 
 {% block content %}
@@ -34,6 +34,10 @@
                     <span class="minicard tag">{{tag}}</span>
                   {% endfor %}
                 </div>
+                <form class="{% if user in post.likes.all%}liked {%endif%}like-form" method="post" action="/like/{{post.id}}/">
+                  {% csrf_token %}
+                  <button type="submit" class="like-btn" id="{{post.id}}">{{post.likes.count}} <i class="fa-solid fa-heart"></i></button>
+                </form>
                 <div class="viewfull"><a href="{{ post.get_absolute_url }}" class="viewfull-btn">view full post</a></div>
               </div>
             </div>
