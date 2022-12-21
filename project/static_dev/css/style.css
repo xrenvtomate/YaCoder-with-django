@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    /* --bg-main: #1a181b; */
+    --bg-main: #161616;
+    --bg-header: rgba(78,50,122,0.7);
+    --post-bg:
+}
+
 @media (min-width: 768px) {
     .container {
         width: 720px;
@@ -22,10 +31,10 @@
 }
 
 body {
-    background: #18151a;
-    color: #f0f1ff;
+    background: var(--bg-main);
+    color: #fff;
     padding-top: 100px;
-    font-family: 'open-sans', sans-serif;
+    font-family: 'open sans', serif;
 }
 
 a:hover, a {
@@ -38,7 +47,7 @@ a:hover, a {
     top: 0;
     width: 100vw;
     z-index: 100;
-    background-color: #5c009e9e;
+    background-color: var(--bg-header);
     backdrop-filter: blur(5px);
     font-size: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.6);
@@ -80,9 +89,8 @@ a:hover, a {
     min-width: 400px;
     transition: all 0.3s ease;
     border: 1px solid rgba(254, 222, 255, 0.2);
-    background-color: rgb(73, 0, 118);
+    background: rgb(78,50,122);
     padding: 5px;
-    box-shadow: 0 0 20px rgba(98, 0, 143, 0.461);
     margin-bottom: 80px;
 }
 
@@ -110,8 +118,6 @@ a:hover, a {
     font-size: 16px;
     align-items: center;
 }
-
-
 
 .author-avatar {
     height: 1em;
@@ -153,8 +159,8 @@ pre {
 
 .viewfull-btn {
     display: inline-block;
-    background: rgb(105,0,255);
-    background: linear-gradient(150deg, rgba(105,0,255,1) 0%, rgba(255,0,131,1) 100%);
+    background: rgb(204, 0, 255);
+    box-shadow: 0 0 10px rgba(185, 13, 30, 0.288);
     padding: 0 10px;
     margin-top: 15px;
     border-radius: 10px;
@@ -264,24 +270,22 @@ code.hljs {
 h2 {
     text-align: center;
     font-size: 40px;
+    font-weight: 600;
 }
 
 .minicard {
-    border-radius: 10px;
-    padding: 3px 8px;
+    border-radius: 3px;
+    padding: 0 5px;
     font-weight: bold;
     font-size: 14px;
 }
 
 .lang {
-    background: rgb(0,255,156);
-    background: linear-gradient(150deg, rgba(0,255,156,1) 0%, rgba(0,157,255,1) 100%);
-    color: #333;
+    background: rgb(187, 20, 101);
 }
 
 .tag {
-    background: rgb(120,0,250);
-    background: linear-gradient(150deg, rgba(120,0,250,1) 0%, rgba(255,105,0,1) 100%);
+    background: rgb(187, 20, 101);
 }
 
 .tag::before {
@@ -290,15 +294,27 @@ h2 {
 
 .header-avatar {
     object-fit: cover;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 
 .like-btn {
-    background-color: #f00;
+    background-color: rgb(113, 132, 108);
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    font-weight: 700;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    border-radius: 5px;
+}
+
+.like-btn:hover {
+    transform: scale(1.1)
 }
 
 .liked button {
-    background-color: #666;
+    box-shadow: 0 0 10px rgba(34, 255, 0, 0.477);
+    background-color: #22c55e;
 }
