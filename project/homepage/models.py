@@ -127,7 +127,6 @@ class Post(PublishableBaseModel, NamedBaseModel):
         User,
         verbose_name='author',
         help_text='Post author',
-        default=1,
         on_delete=models.CASCADE,
     )
 

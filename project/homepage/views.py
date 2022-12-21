@@ -55,7 +55,9 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = PostForm
 
     def form_valid(self, form):
-        form.save()
+        post = form.save(commit=False)
+        post.author = self.request.user
+        post.save()
         return redirect('homepage:home')
 
     def form_invalid(self, form):
