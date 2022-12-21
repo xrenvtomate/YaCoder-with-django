@@ -20,11 +20,18 @@
     </div>
   {% endfor %}
 {% endif %}
-<form method="post" action="" style="margin-top: 20px;">
+<form method="post" action="" style="margin-top: 20px;" id="form">
 
   {% csrf_token %}
   <ul>
-    {% for field in form %}
+    {% for field in form.hidden_fields %}
+      {% if field|field_type == "SelectMultiple" %}
+        {{ field|add_attr:"class:selectpicker, data-style: btn-secondary" }}
+      {% else %}
+        {{ field|add_attr:"class:form-control dark-input" }}
+      {% endif %}
+    {% endfor %}
+    {% for field in form.visible_fields %}
       <label for="{{ field.id_for_label }}" class="col-sm-8 col-form-label">
         {{ field.label }}
         {% if field.field.required %}
