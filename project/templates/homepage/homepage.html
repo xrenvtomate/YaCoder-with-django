@@ -23,7 +23,7 @@
                   {% else %}
                     <img class="author-avatar" src="{% static 'img/def_profile_pic.jpg' %}" alt="">
                   {% endif %}
-                  <a class="author-username" href="#">{{ post.author.username }} </a>
+                  <a class="author-username" href="{% url 'users:user_detail' pk=post.author.pk %}">{{ post.author.username }} </a>
                 </div>
                 <div class="post-desc">
                   {{post.text|truncatechars:100}}

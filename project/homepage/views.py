@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormMixin
 from django.views.generic.list import ListView
-from django.http import JsonResponse
 
 from .forms import CommentForm, PostForm, TagForm
 from .models import Comment, Post
@@ -16,7 +16,7 @@ class HomeView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.published_main().order_by('popularity')
+        return Post.objects.select_main()
 
 
 class PostDetailView(FormMixin, DetailView):
@@ -73,6 +73,9 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         post = form.save(commit=False)
         post.author = self.request.user
         post.save()
+        for tag in form.cleaned_data['tags']:
+            post.tags.add(tag)
+
         return redirect('homepage:home')
 
     def form_invalid(self, form):

@@ -5,14 +5,12 @@ from . import models as local_models
 
 
 class PostManager(models.Manager):
-    def published_main(self):
+    def select_main(self):
         return (
             self.get_queryset()
-                .filter(
-                    is_published=True,
-                    )
+                .all()
                 .select_related('prog_language')
-                .order_by('name')
+                .order_by('popularity')
                 .prefetch_related(
                     models.Prefetch(
                         'tags',
