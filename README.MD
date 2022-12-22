@@ -27,10 +27,6 @@ on linux
 ```sh
 source venv/bin/activate
 ```
-windows
-```sh
-venv/scripts/activate
-```
 install 
 ```sh
 pip install -r requirements.txt

@@ -16,7 +16,7 @@ class HomeView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.published_main().order_by('popularity')
+        return Post.objects.select_main()
 
 
 class PostDetailView(FormMixin, DetailView):
@@ -73,6 +73,9 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         post = form.save(commit=False)
         post.author = self.request.user
         post.save()
+        for tag in form.cleaned_data['tags']:
+            post.tags.add(tag)
+
         return redirect('homepage:home')
 
     def form_invalid(self, form):

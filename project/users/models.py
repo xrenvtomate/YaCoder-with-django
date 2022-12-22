@@ -8,13 +8,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         'username',
         max_length=127,
-        help_text='Не более 127 символов',
+        help_text='127 symbols max',
     )
     email = models.EmailField(
         'email',
         max_length=254,
         unique=True,
-        help_text='Не более 254 символов',
+        help_text='254 symbols max',
     )
 
     first_name = models.CharField(
@@ -22,14 +22,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=127,
         blank=True,
         null=True,
-        help_text='Не более 127 символов',
+        help_text='127 symbols max',
     )
     last_name = models.CharField(
         'last name',
         max_length=127,
         blank=True,
         null=True,
-        help_text='Не более 127 символов',
+        help_text='127 symbols max',
     )
     about_me = models.TextField(
         'about me',
@@ -39,10 +39,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     profile_pic = models.ImageField(
         'profile picture',
         upload_to='images/%Y/%m',
-        blank=True,
-    )
-    friends = models.ManyToManyField(
-        'self',
         blank=True,
     )
 

@@ -38,12 +38,8 @@ class PostAdmin(admin.ModelAdmin):
         'author',
         'code',
         'text',
-        'is_published',
         'created_on',
         'views'
-    )
-    list_editable = (
-        'is_published',
     )
     list_display_links = ('name',)
     filter_horizontal = ('tags',)

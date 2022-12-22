@@ -1,6 +1,6 @@
 import datetime
 
-from core.models import NamedBaseModel, PublishableBaseModel
+from core.models import NamedBaseModel
 from django.db import models
 from django.urls import reverse
 from users.models import User
@@ -8,14 +8,14 @@ from users.models import User
 from .managers import CommentManager, PostManager
 
 
-class Tag(PublishableBaseModel, NamedBaseModel):
+class Tag(NamedBaseModel):
     class Meta:
         verbose_name = 'tag'
         verbose_name_plural = 'tags'
         default_related_name = 'tags'
 
 
-class ProgLanguage(PublishableBaseModel, NamedBaseModel):
+class ProgLanguage(NamedBaseModel):
 
     class Meta:
         verbose_name = 'programming language'
@@ -79,7 +79,7 @@ class Comment(models.Model):
                 f'{self.created_on.strftime("%Y-%m-%d %H:%M")}')
 
 
-class Post(PublishableBaseModel, NamedBaseModel):
+class Post(NamedBaseModel):
     code = models.TextField(
         'code',
         help_text='Your code',
@@ -91,26 +91,23 @@ class Post(PublishableBaseModel, NamedBaseModel):
         blank=True
     )
     created_on = models.DateTimeField(
-        'дата создания',
-        help_text='дата создания поста',
+        'created on',
+        help_text='datetime of post creation',
         auto_now_add=True,
     )
     views = models.PositiveIntegerField(
-        verbose_name='просмотры',
+        'views',
         blank=True,
         default=0,
     )
     likes = models.ManyToManyField(
         User,
-        'лайки',
+        'likes',
         default=0
     )
-    age_of_post = models.DurationField(
-        default=datetime.timedelta(0)
-    )
     popularity = models.FloatField(
-        verbose_name='популярность',
-        help_text='популярность поста = просмотры / время жизни поста',
+        'popularity',
+        help_text='post popularity = views / time since it\'s creation',
         default=0,
         blank=True,
     )
