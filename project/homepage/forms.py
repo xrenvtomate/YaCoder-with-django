@@ -4,6 +4,11 @@ from .models import Comment, Post, Tag
 
 
 class CommentForm(forms.ModelForm):
+    editing = forms.IntegerField(
+        required=False,
+        disabled=True,
+        widget=forms.HiddenInput(),
+        )
 
     class Meta:
         model = Comment
@@ -11,6 +16,8 @@ class CommentForm(forms.ModelForm):
             Comment.text.field.name,
             Comment.parent_comment.field.name,
             Comment.replied_comment.field.name,
+            'editing',
+
         )
         labels = {
             Comment.text.field.name: 'Write your comment',

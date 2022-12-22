@@ -74,6 +74,9 @@
             </div>
             <div class="card-footer text-muted">
               <a href="#comment-anchor" class="reply-link" comment-id="{{ cmnt.pk }}" username="{{ cmnt.user.username }}" parent="{{ cmnt.parent_comment.pk }}" style="color:#99bef7;">Reply</a>
+              {% if user.pk == cmnt.user.pk %}
+                <a href="#comment-anchor" class="edit-link" comment-id="{{ cmnt.pk }}" comment-text="{{ cmnt.text }}" style="color:#99bef7;">Edit</a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -84,10 +87,10 @@
     {% endblock %}
   </div>
   <script type="text/javascript"> 
-    var links = document.querySelectorAll(".reply-link");
-    links.forEach(function(elem) {
-        elem.addEventListener("click", function() {
-          var my_form = document.getElementById("form");
+    var reply_links = document.querySelectorAll('.reply-link');
+    reply_links.forEach(function(elem) {
+        elem.addEventListener('click', function() {
+          var my_form = document.getElementById('form');
           my_form.text.value = '@'.concat(elem.getAttribute('username'), ', ');
           if (!elem.getAttribute('parent')) {
             my_form.parent_comment.value = elem.getAttribute('comment-id');
@@ -98,6 +101,17 @@
           my_form.replied_comment.value = elem.getAttribute('comment-id');
         });
     });
+    var edit_links = document.querySelectorAll('.edit-link');
+    edit_links.forEach(function(elem) {
+      elem.addEventListener('click', function() {
+        var my_form = document.getElementById('form');
+        my_form.text.value = elem.getAttribute('comment-text');
+        my_form.editing.value = elem.getAttribute('comment-id');
+      });
+    });
+    $('#form').submit(function(){
+      $("#form :disabled").removeAttr('disabled');
+  });
   </script>
 {% endblock %}
 
