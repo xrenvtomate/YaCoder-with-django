@@ -40,6 +40,13 @@ $ cd project
 ```sh
 python manage.py migrate
 ```
+### load data from fixtures
+```sh
+python3 manage.py loaddata homepage/fixtures/homepage_fixture.json
+```
+```sh
+python3 manage.py loaddata users/fixtures/users_fixture.json
+```
 
 ### create superuser
 ```sh
