@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormMixin
 from django.views.generic.list import ListView
+from django.http import JsonResponse
 
 from .forms import CommentForm, PostForm
 from .models import Comment, Post
@@ -77,3 +78,14 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     def form_invalid(self, form):
         return render(self.request, 'homepage/create_post.html',
                       {'form': form})
+
+
+def likeView(req, pk):
+    if req.method == 'POST':
+        user = req.user
+        post = Post.objects.get(pk=pk)
+        if user in post.likes.all():
+            post.likes.remove(user)
+        else:
+            post.likes.add(user)
+        return JsonResponse({'likes': post.likes.count()})

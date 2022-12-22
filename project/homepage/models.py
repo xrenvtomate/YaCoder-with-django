@@ -100,6 +100,11 @@ class Post(PublishableBaseModel, NamedBaseModel):
         blank=True,
         default=0,
     )
+    likes = models.ManyToManyField(
+        User,
+        'лайки',
+        default=0
+    )
     age_of_post = models.DurationField(
         default=datetime.timedelta(0)
     )
