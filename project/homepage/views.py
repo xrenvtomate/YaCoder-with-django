@@ -29,13 +29,21 @@ class PostDetailView(FormMixin, DetailView):
         form = self.get_form()
         if form.is_valid():
             comment_text = form.cleaned_data['text']
+            parent_comment = form.cleaned_data['parent_comment']
+            replied_comment = form.cleaned_data['replied_comment']
             user = self.request.user
             post = self.get_object()
-            Comment.objects.create(
+            comment = Comment(
                 text=comment_text,
                 user=user,
                 post=post,
             )
+            if parent_comment:
+                comment.parent_comment = parent_comment
+            if replied_comment:
+                comment.text = ''.join(comment_text.split(',')[1:])
+                comment.replied_comment = replied_comment
+            comment.save()
             return redirect('homepage:post', pk=self.kwargs['pk'])
         else:
             return self.form_invalid(form)

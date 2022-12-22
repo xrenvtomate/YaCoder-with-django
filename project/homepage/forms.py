@@ -9,9 +9,15 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = (
             Comment.text.field.name,
+            Comment.parent_comment.field.name,
+            Comment.replied_comment.field.name,
         )
         labels = {
             Comment.text.field.name: 'Write your comment',
+        }
+        widgets = {
+            Comment.parent_comment.field.name: forms.HiddenInput(),
+            Comment.replied_comment.field.name: forms.HiddenInput(),
         }
 
     def __init__(self, *args, **kwargs):
