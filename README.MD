@@ -1,3 +1,6 @@
+![Python Application workflow](https://github.com/Xenx3128/YandexProject/actions/workflows/python-app.yml/badge.svg)
+![Django CI workflow]https://github.com/Xenx3128/YandexProject/actions/workflows/django.yml/badge.svg)
+
 # YaCoder install & set up
 YaCoder is a social network for the people who are interested in olimpiad programming and algorithms
 
@@ -12,7 +15,7 @@ $ cd YandexProject
 ```
 
 ### set environment variables
-create .env file and declare DEBUG=True or DEBUG=False in it
+create .env file and declare environment variables in it (just like in .env-exapmle)
 
 
 
