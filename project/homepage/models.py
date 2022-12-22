@@ -65,8 +65,6 @@ class Comment(models.Model):
     )
     edited_on = models.DateTimeField(
         'edited on',
-        blank=True,
-        null=True,
         auto_now=True,
     )
     objects = CommentManager()
