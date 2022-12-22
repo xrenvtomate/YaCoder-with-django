@@ -4,7 +4,7 @@
 # YaCoder install & set up
 YaCoder is a social network for the people who are interested in olimpiad programming and algorithms
 
-![Homepage Image](project/static/img/readme1.png)
+![Homepage Image](project/static_dev/img/readme1.png)
 
 
 ## Setup
