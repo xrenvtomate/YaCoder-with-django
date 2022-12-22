@@ -1,6 +1,6 @@
 import datetime
 
-from core.models import NamedBaseModel, PublishableBaseModel, SluggedBaseModel
+from core.models import NamedBaseModel, PublishableBaseModel
 from django.db import models
 from django.urls import reverse
 from users.models import User
@@ -8,14 +8,14 @@ from users.models import User
 from .managers import CommentManager, PostManager
 
 
-class Tag(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
+class Tag(PublishableBaseModel, NamedBaseModel):
     class Meta:
         verbose_name = 'tag'
         verbose_name_plural = 'tags'
         default_related_name = 'tags'
 
 
-class ProgLanguage(PublishableBaseModel, NamedBaseModel, SluggedBaseModel):
+class ProgLanguage(PublishableBaseModel, NamedBaseModel):
 
     class Meta:
         verbose_name = 'programming language'

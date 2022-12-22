@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, FormMixin
 from django.views.generic.list import ListView
 from django.http import JsonResponse
 
-from .forms import CommentForm, PostForm
+from .forms import CommentForm, PostForm, TagForm
 from .models import Comment, Post
 
 
@@ -77,6 +77,19 @@ class CreatePostView(LoginRequiredMixin, CreateView):
 
     def form_invalid(self, form):
         return render(self.request, 'homepage/create_post.html',
+                      {'form': form})
+
+
+class CreateTagView(LoginRequiredMixin, CreateView):
+    template_name = 'homepage/create_tag.html'
+    form_class = TagForm
+
+    def form_valid(self, form):
+        form.save()
+        return redirect('homepage:create_post')
+
+    def form_invalid(self, form):
+        return render(self.request, 'homepage/create_tag.html',
                       {'form': form})
 
 

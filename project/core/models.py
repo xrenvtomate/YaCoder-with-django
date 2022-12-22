@@ -23,16 +23,3 @@ class NamedBaseModel(models.Model):
 
     def __str__(self) -> str:
         return self.name
-
-
-class SluggedBaseModel(models.Model):
-    slug = models.SlugField(
-        'slug',
-        max_length=200,
-        unique=True,
-        blank=True,
-        help_text='Slug'
-    )
-
-    class Meta:
-        abstract = True
