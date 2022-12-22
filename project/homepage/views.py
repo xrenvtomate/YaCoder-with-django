@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormMixin
 from django.views.generic.list import ListView
-from django.http import JsonResponse
 
 from .forms import CommentForm, PostForm, TagForm
 from .models import Comment, Post
