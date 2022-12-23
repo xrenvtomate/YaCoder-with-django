@@ -2,7 +2,7 @@
 ![Django CI workflow](https://github.com/Xenx3128/YandexProject/actions/workflows/django.yml/badge.svg)
 
 # YaCoder install & set up
-YaCoder is a social network for the people who are interested in olimpiad programming and algorithms
+YaCoder is a social network for the people who are interested in olympiad programming and algorithms
 
 ![Homepage Image](project/static_dev/img/readme1.png)
 
