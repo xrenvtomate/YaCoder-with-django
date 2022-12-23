@@ -28,31 +28,33 @@ class PostDetailView(FormMixin, DetailView):
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
-            comment_text = form.cleaned_data['text']
-            parent_comment = form.cleaned_data['parent_comment']
-            replied_comment = form.cleaned_data['replied_comment']
-            editing = form.data['editing']
-            user = self.request.user
-            post = self.get_object()
-            if replied_comment:
-                comment_text = ''.join(comment_text.split(',')[1:])
-            if editing:
-                comment = Comment.objects.get(pk=editing)
-                comment.text = comment_text
-                comment.save()
-            else:
-                comment = Comment(
-                    text=comment_text,
-                    user=user,
-                    post=post,
-                    parent_comment=parent_comment,
-                    replied_comment=replied_comment,
-                )
-                comment.save()
-
-            return redirect('homepage:post', pk=self.kwargs['pk'])
+            return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+    def form_valid(self, form):
+        comment_text = form.cleaned_data['text']
+        parent_comment = form.cleaned_data['parent_comment']
+        replied_comment = form.cleaned_data['replied_comment']
+        editing = form.data['editing']
+        user = self.request.user
+        post = self.get_object()
+        if replied_comment:
+            comment_text = ''.join(comment_text.split(',')[1:])
+        if editing:
+            comment = Comment.objects.get(pk=editing)
+            comment.text = comment_text
+            comment.save()
+        else:
+            comment = Comment(
+                text=comment_text,
+                user=user,
+                post=post,
+                parent_comment=parent_comment,
+                replied_comment=replied_comment,
+            )
+            comment.save()
+        return redirect('homepage:post', pk=self.kwargs['pk'])
 
     def get_object(self):
         return get_object_or_404(Post, pk=self.kwargs['pk'])
