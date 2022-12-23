@@ -106,7 +106,7 @@
       elem.addEventListener('click', function() {
         var my_form = document.getElementById('form');
         my_form.text.value = elem.getAttribute('comment-text');
-        my_form.editing.value = elem.getAttribute('comment-id');
+        my_form.editing_id.value = elem.getAttribute('comment-id');
       });
     });
     $('#form').submit(function(){
