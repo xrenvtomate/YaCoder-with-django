@@ -33,7 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     about_me = models.TextField(
         'about me',
-        default='Sample Text',
+        default='no bio yet',
         blank=True,
     )
     profile_pic = models.ImageField(

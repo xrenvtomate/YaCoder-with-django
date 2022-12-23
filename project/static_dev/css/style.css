@@ -3,8 +3,8 @@
 :root {
     /* --bg-main: #1a181b; */
     --bg-main: #161616;
-    --bg-header: rgba(78,50,122,0.7);
-    --post-bg:
+    --bg-header: rgba(67, 50, 122, 0.7);
+    --post-bg: rgb(67, 50, 122);
 }
 
 @media (min-width: 768px) {
@@ -89,14 +89,14 @@ a:hover, a {
     min-width: 400px;
     transition: all 0.3s ease;
     border: 1px solid rgba(254, 222, 255, 0.2);
-    background: rgb(78,50,122);
+    background: var(--post-bg);
     padding: 5px;
     margin-bottom: 80px;
 }
 
 .post-min:hover {
     transform: scale(1.03);
-    box-shadow: 0 0 40px rgba(98, 0, 143, 0.461);
+    box-shadow: 0 0 40px rgba(62, 0, 143, 0.461);
 }
 
 .post-about {
@@ -160,7 +160,8 @@ pre {
 .viewfull-btn {
     display: inline-block;
     background: rgb(204, 0, 255);
-    box-shadow: 0 0 10px rgba(185, 13, 30, 0.288);
+    box-shadow: 0 0 10px rgba(185, 13, 119, 0.288);
+    background: rgb(166, 0, 255);
     padding: 0 10px;
     margin-top: 15px;
     border-radius: 10px;
@@ -275,17 +276,17 @@ h2 {
 
 .minicard {
     border-radius: 3px;
-    padding: 0 5px;
+    padding: 1px 10px;
     font-weight: bold;
     font-size: 14px;
 }
 
 .lang {
-    background: rgb(187, 20, 101);
+    background: rgb(205, 27, 77);
 }
 
 .tag {
-    background: rgb(187, 20, 101);
+    background: rgb(205, 27, 77);
 }
 
 .tag::before {
@@ -308,6 +309,7 @@ h2 {
 .like-btn {
     background-color: rgb(113, 132, 108);
     color: #fff;
+    font-weight: bold;
     border: none;
     padding: 6px 10px;
     font-weight: 700;
