@@ -2,7 +2,7 @@
 ![Django CI workflow](https://github.com/Xenx3128/YandexProject/actions/workflows/django.yml/badge.svg)
 
 # YaCoder install & set up
-YaCoder is a social network for the people who are interested in olimpiad programming and algorithms
+YaCoder is a social network for the people who are interested in competitive programming and algorithms
 
 ![Homepage Image](project/static_dev/img/readme1.png)
 
@@ -45,10 +45,10 @@ python manage.py migrate
 ```
 ### load data from fixtures
 ```sh
-python3 manage.py loaddata homepage/fixtures/homepage_fixture.json
+python manage.py loaddata homepage/fixtures/homepage_fixture.json
 ```
 ```sh
-python3 manage.py loaddata users/fixtures/users_fixture.json
+python manage.py loaddata users/fixtures/users_fixture.json
 ```
 
 ### create superuser
